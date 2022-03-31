@@ -12,9 +12,8 @@ Pay your attention that we use UUID data type as PK for all entities (categories
 You can edit all tables using Django Admin.
 
 .. |Django Git|
-   :target: https://github.com/django/django
+   :link: https://github.com/django/django
 .. |django-mptt Git|
    :target: https://github.com/django-mptt/django-mptt
 .. |django-mptt-admin Git|
    :target: https://github.com/mbraak/django-mptt-admin
-
