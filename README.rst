@@ -1,6 +1,5 @@
 =======
-MPTT in Django:
-This is an example of usage django, django-mptt and django-mptt-admin projects together.
+MPTT in Django: This is an example of usage django, django-mptt and django-mptt-admin projects together
 =======
 |Django Git| |django-mptt Git| |django-mptt-admin Git|
 
