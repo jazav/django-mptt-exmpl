@@ -1,0 +1,38 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyCompatibilityInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ourVersions">
+        <value>
+          <list size="2">
+            <item index="0" class="java.lang.String" itemvalue="3.9" />
+            <item index="1" class="java.lang.String" itemvalue="3.10" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ignoredPackages">
+        <value>
+          <list size="14">
+            <item index="0" class="java.lang.String" itemvalue="wagtail" />
+            <item index="1" class="java.lang.String" itemvalue="dj-database-url" />
+            <item index="2" class="java.lang.String" itemvalue="botocore" />
+            <item index="3" class="java.lang.String" itemvalue="unidecode" />
+            <item index="4" class="java.lang.String" itemvalue="psycopg2" />
+            <item index="5" class="java.lang.String" itemvalue="google-cloud-storage" />
+            <item index="6" class="java.lang.String" itemvalue="whitenoise" />
+            <item index="7" class="java.lang.String" itemvalue="django-storages" />
+            <item index="8" class="java.lang.String" itemvalue="aws-requests-auth" />
+            <item index="9" class="java.lang.String" itemvalue="boto3" />
+            <item index="10" class="java.lang.String" itemvalue="elasticsearch" />
+            <item index="11" class="java.lang.String" itemvalue="django-redis" />
+            <item index="12" class="java.lang.String" itemvalue="django_cache_url" />
+            <item index="13" class="java.lang.String" itemvalue="uwsgi" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="TaskProblemsInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  </profile>
+</component>

@@ -1,0 +1,3 @@
+django
+django-mptt
+django-mptt-admin
