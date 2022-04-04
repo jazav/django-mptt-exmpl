@@ -1,7 +1,7 @@
 =======
 MPTT in Django: This is an example of usage django, django-mptt and django-mptt-admin projects together
 =======
-|Django Git| |django-mptt Git| |django-mptt-admin Git|
+|Django Git| |django-mptt Git| |django-mptt-admin Git| |sqlalchemy-mptt-exmpl Git|
 
 There is a simple database model of two tables: Category (id, name) and CategoryTree (id, category_id, parent_id).
 Category is just a plain list of simple items. You can put some stuff in this dictionary to combine them like a tree.
@@ -20,3 +20,4 @@ You can edit all tables using Django Admin.
    :target: https://github.com/mbraak/django-mptt-admin
 .. |sqlalchemy-mptt-exmpl Git|
    :target: https://github.com/jazav/sqlalchemy-mptt-exmpl
+
