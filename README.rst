@@ -13,12 +13,12 @@ You can edit all tables using Django Admin.
 *This project is compatible with `sqlalchemy-mptt-exmpl <https://github.com/jazav/sqlalchemy-mptt-exmpl/>`_ project.*
 
 .. |Django Git|
-   :link: https://github.com/django/django
+   :target: https://github.com/django/django
 .. |django-mptt Git|
-   :link: https://github.com/django-mptt/django-mptt
+   :target: https://github.com/django-mptt/django-mptt
 .. |django-mptt-admin Git|
-   :link: https://github.com/mbraak/django-mptt-admin
+   :target: https://github.com/mbraak/django-mptt-admin
 .. |sqlalchemy-mptt-exmpl Git|
-   :link: https://github.com/jazav/sqlalchemy-mptt-exmpl
+   :target: https://github.com/jazav/sqlalchemy-mptt-exmpl
 .. _sqlalchemy-mptt-exmpl: https://github.com/jazav/sqlalchemy-mptt-exmpl/
 
