@@ -10,7 +10,7 @@ CategoryTree is a hierarchical data structure that using Modified Preorder Tree 
 Pay your attention that we use UUID data type as PK for all entities (categories and their hierarchies).
 You can edit all tables using Django Admin.
 
-*This project is compatible with sqlalchemy-mptt-exmpl project.*
+*This project is compatible with `sqlalchemy-mptt-exmpl`_ project.*
 
 .. |Django Git|
    :link: https://github.com/django/django
@@ -20,4 +20,5 @@ You can edit all tables using Django Admin.
    :link: https://github.com/mbraak/django-mptt-admin
 .. |sqlalchemy-mptt-exmpl Git|
    :link: https://github.com/jazav/sqlalchemy-mptt-exmpl
+.. _sqlalchemy-mptt-exmpl: https://github.com/jazav/sqlalchemy-mptt-exmpl
 
