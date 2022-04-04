@@ -58,7 +58,9 @@ class CategoryTree(MPTTModel, CreateUpdateTracker):
         db_table = "category_tree"
 
     class MPTTMeta:
-        order_insertion_by = ['category']
+        order_insertion_by = ['category_id']
+        right_attr = 'rgt'
+        left_attr = 'lft'
 
     def __str__(self):
         return f'{self.category}'

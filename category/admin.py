@@ -11,11 +11,13 @@ class CategoryTreeInline(admin.TabularInline):
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
     search_fields = ["name", ]
+    ordering = ["name", ]
     inlines = [CategoryTreeInline, ]
 
 
 class CategoryTreeAdmin(DjangoMpttAdmin):
     list_filter = ["level", ]
     # pass
+
 
 admin.site.register(CategoryTree, CategoryTreeAdmin)
