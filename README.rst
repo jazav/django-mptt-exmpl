@@ -15,9 +15,9 @@ You can edit all tables using Django Admin.
 .. |Django Git|
    :link: https://github.com/django/django
 .. |django-mptt Git|
-   :target: https://github.com/django-mptt/django-mptt
+   :link: https://github.com/django-mptt/django-mptt
 .. |django-mptt-admin Git|
-   :target: https://github.com/mbraak/django-mptt-admin
+   :link: https://github.com/mbraak/django-mptt-admin
 .. |sqlalchemy-mptt-exmpl Git|
-   :target: https://github.com/jazav/sqlalchemy-mptt-exmpl
+   :link: https://github.com/jazav/sqlalchemy-mptt-exmpl
 
