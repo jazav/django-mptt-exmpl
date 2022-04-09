@@ -3,6 +3,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.core.exceptions import ObjectDoesNotExist
 import uuid
 
+
 # nb = dict(null=True, blank=True)
 
 # def xstr(s):
@@ -59,9 +60,8 @@ class CategoryTree(MPTTModel, CreateUpdateTracker):
 
     class MPTTMeta:
         order_insertion_by = ['category_id']
-        right_attr = 'rgt'
+        right_attr = 'rgt' # redefine right attribute to be compatible with sqlalchemy-mptt
         left_attr = 'lft'
 
     def __str__(self):
         return f'{self.category}'
-

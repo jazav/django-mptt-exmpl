@@ -3,3 +3,4 @@ django-mptt
 django-mptt-admin
 django-dotenv
 django-debug-toolbar
+coverage
