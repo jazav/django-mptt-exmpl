@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import dotenv
+import dj_database_url
 
 # Read all variable from .env file
 dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
@@ -33,7 +34,7 @@ ALLOWED_HOSTS = []
 # Add IP addresses of your host here to open debug_toolbar
 
 INTERNAL_IPS = [
-   '127.0.0.1',
+    '127.0.0.1',
 ]
 
 # Application definition
@@ -81,19 +82,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_mptt.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 db_file = os.getenv("SQLITE_FILE")
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
         'NAME': db_file,
     }
 }
-
+if DATABASES['default']['NAME'] is None:
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -113,7 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -124,7 +123,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -155,7 +153,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-                'level': os.getenv('DJANGO_LOG_LEVEL', 'WARNING'),
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'WARNING'),
         },
     },
 }

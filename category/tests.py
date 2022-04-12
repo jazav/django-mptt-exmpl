@@ -19,13 +19,6 @@ class CategoryTestCase(TestCase):
 
         self.assertEqual('category_1', cat1.name)
 
-    def test_category_unique(self):
-        from django.db import IntegrityError
-        try:
-            Category.objects.create(name="category_1")
-        except IntegrityError as e:
-            self.assertEqual('UNIQUE constraint failed: category.name', e.args[0])
-
     def test_category_not_exist(self):
         cat_count = Category.objects.filter(name="category_3").count()
         self.assertEqual(0, cat_count)

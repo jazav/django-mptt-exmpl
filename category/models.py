@@ -1,7 +1,7 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.core.exceptions import ObjectDoesNotExist
-import uuid
+# import uuid
 
 
 # nb = dict(null=True, blank=True)
@@ -36,8 +36,12 @@ class GetOrNoneManager(models.Manager):
 
 
 class Category(CreateTracker):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,
-                          help_text="Unique ID for Category")
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,
+    #                       help_text="Unique ID for Category")
+
+    # it is unnecessary to define a primary key, if we use bigint as primary key
+    # id = models.AutoField(primary_key=True)
+
     name = models.CharField(max_length=256, unique=True)
     objects = GetOrNoneManager()
 
@@ -50,8 +54,11 @@ class Category(CreateTracker):
 
 
 class CategoryTree(MPTTModel, CreateUpdateTracker):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,
-                          help_text="Unique ID for CategoryTree")
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,
+    #                       help_text="Unique ID for CategoryTree")
+    # it is unnecessary to define a primary key, if we use bigint as primary key
+    # id = models.AutoField(primary_key=True)
+
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 

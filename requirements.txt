@@ -2,5 +2,7 @@ django
 django-mptt
 django-mptt-admin
 django-dotenv
+dj_database_url
+psycopg2-binary
 django-debug-toolbar
 coverage
