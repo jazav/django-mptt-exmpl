@@ -5,18 +5,20 @@ from category.models import Category, CategoryTree
 
 logger = logging.getLogger(__name__)
 
+
 class CategoryTestCase(TestCase):
     def setUp(self):
+        """Step Arrange: Create test category"""
         Category.objects.create(name="category_1")
         logger.debug(f"category has been created successfully")
 
     def test_category_get(self):
-        """Just get appropriate category"""
+        """Step Act: Just get appropriate category"""
         try:
             cat1 = Category.objects.get(name="category_1")
         except Category.DoesNotExist:
             self.fail("cat1 doesn't exist")
-
+        # Step Assert:
         self.assertEqual('category_1', cat1.name)
 
     def test_category_not_exist(self):
