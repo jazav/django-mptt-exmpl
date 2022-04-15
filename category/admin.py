@@ -7,6 +7,7 @@ class CategoryTreeInline(admin.TabularInline):
     model = CategoryTree
     extra = 1
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     model = Category

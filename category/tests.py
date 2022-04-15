@@ -61,7 +61,6 @@ class CategoryTreeTestCase(TestCase):
 
         logger.debug(f"root and child node have been created successfully")
 
-
         self.assertEqual('category_2', tree_node.category.name)
         tree_node.delete()
         tree_root.delete()
