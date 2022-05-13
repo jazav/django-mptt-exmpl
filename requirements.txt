@@ -5,4 +5,6 @@ django-dotenv
 dj_database_url
 psycopg2-binary
 django-debug-toolbar
+# Uncomment the following line to work with django-query-profiler
+# django-query-profiler
 coverage

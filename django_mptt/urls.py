@@ -39,6 +39,10 @@ if settings.DEBUG:
             )
         )
     ]
+    # Uncomment the following line to work with django-query-profiler
+    # urlpatterns += [
+    #     path('django_query_profiler/', include('django_query_profiler.client.urls'))
+    # ]
 
     import debug_toolbar
 

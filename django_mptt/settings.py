@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    # Uncomment the following line to work with django-query-profiler
+    # 'django_query_profiler',
     'mptt',
     'django_mptt_admin',
     'category',
@@ -55,6 +57,9 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    # Request and all middleware that come after our middleware, would be profiled
+    # Uncomment the following line to work with django-query-profiler
+    # 'django_query_profiler.client.middleware.QueryProfilerMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -94,6 +99,10 @@ DATABASES = {
 if DATABASES['default']['NAME'] is None:
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
+
+    # Uncomment the following line to work with django-query-profiler
+    # if 'sqlite3' in DATABASES['default']['ENGINE']:
+    #     DATABASES['default']['ENGINE'].update('django_query_profiler.django.db.backends.sqlite3')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

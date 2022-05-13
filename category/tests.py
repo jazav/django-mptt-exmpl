@@ -28,9 +28,11 @@ class CategoryTestCase(TestCase):
 
 class CategoryTreeTestCase(TestCase):
     def setUp(self):
-        Category.objects.create(name="category_1")
-        Category.objects.create(name="category_2")
-        logger.debug(f"two categories have been created successfully")
+        categories = []
+        for i in range(1, 10):
+            categories.append(Category(name=f"category_{i}"))
+        Category.objects.bulk_create(categories)
+        logger.debug(f"categories have been created successfully")
 
     def test_create_root(self):
         cat1: Category = Category.objects.get(name="category_1")
