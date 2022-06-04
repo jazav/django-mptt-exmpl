@@ -88,21 +88,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'django_mptt.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-db_file = os.getenv("SQLITE_FILE")
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': db_file,
-    }
-}
-if DATABASES['default']['NAME'] is None:
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-    # Uncomment the following line to work with django-query-profiler
-    # if 'sqlite3' in DATABASES['default']['ENGINE']:
-    #     DATABASES['default']['ENGINE'].update('django_query_profiler.django.db.backends.sqlite3')
+DB_FILE = os.environ.get("DATABASE_URL")
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600, default=DB_FILE),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

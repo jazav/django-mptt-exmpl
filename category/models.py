@@ -9,6 +9,12 @@ from django.core.exceptions import ObjectDoesNotExist
 # def xstr(s):
 #     return '' if s is None else str(s)
 
+APP_LABEL: str = __package__.rsplit('.', 1)[-1]
+
+
+def get_table_name(model_name: str) -> str:
+    return f'{APP_LABEL}_{model_name}'
+
 
 class CreateTracker(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -46,7 +52,7 @@ class Category(CreateTracker):
     objects = GetOrNoneManager()
 
     class Meta:
-        db_table = "category"
+        db_table = get_table_name("category")
         verbose_name_plural = "categories"
 
     def __str__(self):
@@ -59,11 +65,11 @@ class CategoryTree(MPTTModel, CreateUpdateTracker):
     # it is unnecessary to define a primary key, if we use bigint as primary key
     # id = models.AutoField(primary_key=True)
 
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = "category_tree"
+        db_table = get_table_name("category_tree")
 
     class MPTTMeta:
         order_insertion_by = ['category_id']

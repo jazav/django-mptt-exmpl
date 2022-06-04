@@ -1,4 +1,4 @@
-django
+django < 4.0.0
 django-mptt
 django-mptt-admin
 django-dotenv
