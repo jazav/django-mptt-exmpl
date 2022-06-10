@@ -23,8 +23,10 @@ class CategoryTreeAdmin(DjangoMpttAdmin):
     list_filter = ["level", ]
     # pass
 
+
 class MyAdmin(TreeAdmin):
     form = movenodeform_factory(CategoryTreeBeard)
+
 
 admin.site.register(CategoryTreeBeard, MyAdmin)
 admin.site.register(CategoryMPTT, CategoryTreeAdmin)
