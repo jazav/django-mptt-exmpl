@@ -1,10 +1,13 @@
 from django.contrib import admin
 from django_mptt_admin.admin import DjangoMpttAdmin
-from category.models import Category, CategoryTree
+from treebeard.admin import TreeAdmin
+from treebeard.forms import movenodeform_factory
+
+from category.models import Category, CategoryMPTT, CategoryTreeBeard
 
 
 class CategoryTreeInline(admin.TabularInline):
-    model = CategoryTree
+    model = CategoryMPTT
     extra = 1
 
 
@@ -20,5 +23,8 @@ class CategoryTreeAdmin(DjangoMpttAdmin):
     list_filter = ["level", ]
     # pass
 
+class MyAdmin(TreeAdmin):
+    form = movenodeform_factory(CategoryTreeBeard)
 
-admin.site.register(CategoryTree, CategoryTreeAdmin)
+admin.site.register(CategoryTreeBeard, MyAdmin)
+admin.site.register(CategoryMPTT, CategoryTreeAdmin)

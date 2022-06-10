@@ -1,16 +1,18 @@
 # tests.py
 import logging
+
 from django.test import TestCase
-from category.models import Category, CategoryTree
+
+from category.models import Category, CategoryMPTT, CategoryTreeBeard
 
 logger = logging.getLogger(__name__)
 
 
-class CategoryTestCase(TestCase):
+class Category_TestCase(TestCase):
     def setUp(self):
         """Step Arrange: Create test category"""
         Category.objects.create(name="category_1")
-        logger.debug(f"category has been created successfully")
+        logger.debug("category has been created successfully")
 
     def test_category_get(self):
         """Step Act: Just get appropriate category"""
@@ -26,18 +28,16 @@ class CategoryTestCase(TestCase):
         self.assertEqual(0, cat_count)
 
 
-class CategoryTreeTestCase(TestCase):
+class CategoryMPTT_TestCase(TestCase):
     def setUp(self):
-        categories = []
-        for i in range(1, 10):
-            categories.append(Category(name=f"category_{i}"))
+        categories = [Category(name=f"category_{i}") for i in range(1, 10)]
         Category.objects.bulk_create(categories)
-        logger.debug(f"categories have been created successfully")
+        logger.debug("categories have been created successfully")
 
     def test_create_root(self):
         cat1: Category = Category.objects.get(name="category_1")
-        tree_root: CategoryTree = CategoryTree.objects.create(category=cat1)
-        logger.debug(f"root has been created successfully")
+        tree_root: CategoryMPTT = CategoryMPTT.objects.create(category=cat1)
+        logger.debug("root has been created successfully")
         self.assertIsNone(tree_root.parent)
         tree_root.delete()
 
@@ -45,10 +45,10 @@ class CategoryTreeTestCase(TestCase):
         cat1: Category = Category.objects.get(name="category_1")
         cat2: Category = Category.objects.get(name="category_2")
 
-        tree_root: CategoryTree = CategoryTree.objects.create(category=cat1)
-        tree_node: CategoryTree = CategoryTree.objects.create(category=cat2, parent=tree_root)
+        tree_root: CategoryMPTT = CategoryMPTT.objects.create(category=cat1)
+        tree_node: CategoryMPTT = CategoryMPTT.objects.create(category=cat2, parent=tree_root)
 
-        logger.debug(f"root and child node have been created successfully")
+        logger.debug("root and child node have been created successfully")
 
         self.assertEqual('category_2', tree_node.category.name)
         tree_node.delete()
@@ -58,11 +58,30 @@ class CategoryTreeTestCase(TestCase):
         cat1: Category = Category.objects.get(name="category_1")
         cat2: Category = Category.objects.get(name="category_2")
 
-        tree_root: CategoryTree = CategoryTree.objects.create(category=cat1)
-        tree_node: CategoryTree = CategoryTree.objects.create(category=cat2, parent=tree_root)
+        tree_root: CategoryMPTT = CategoryMPTT.objects.create(category=cat1)
+        tree_node: CategoryMPTT = CategoryMPTT.objects.create(category=cat2, parent=tree_root)
 
-        logger.debug(f"root and child node have been created successfully")
+        logger.debug("root and child node have been created successfully")
 
         self.assertEqual('category_2', tree_node.category.name)
+        tree_node.delete()
+        tree_root.delete()
+
+
+class CategoryTreebeard_TestCase(TestCase):
+
+    def test_create_root(self):
+        tree_root: CategoryTreeBeard = CategoryTreeBeard.add_root(name="category_1")
+        logger.debug("root has been created successfully")
+        self.assertEqual(True, tree_root.is_root(), "Node isn't a root")
+        tree_root.delete()
+
+    def test_create_child(self):
+        tree_root: CategoryTreeBeard = CategoryTreeBeard.add_root(name="category_1")
+        tree_node: CategoryTreeBeard = CategoryTreeBeard.add_child(tree_root, name="category_2")
+
+        logger.debug("root and child node have been created successfully")
+
+        self.assertEqual('category_2', tree_node.name)
         tree_node.delete()
         tree_root.delete()

@@ -1,6 +1,7 @@
-django < 4.0.0
+django
 django-mptt
 django-mptt-admin
+django-treebeard
 django-dotenv
 dj_database_url
 psycopg2-binary

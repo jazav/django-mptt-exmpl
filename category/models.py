@@ -1,13 +1,12 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-from django.core.exceptions import ObjectDoesNotExist
-# import uuid
-
-
-# nb = dict(null=True, blank=True)
-
 # def xstr(s):
 #     return '' if s is None else str(s)
+from treebeard.mp_tree import MP_Node
+
+# import uuid
+# nb = dict(null=True, blank=True)
 
 APP_LABEL: str = __package__.rsplit('.', 1)[-1]
 
@@ -59,7 +58,7 @@ class Category(CreateTracker):
         return f'{self.name}'
 
 
-class CategoryTree(MPTTModel, CreateUpdateTracker):
+class CategoryMPTT(MPTTModel, CreateUpdateTracker):
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,
     #                       help_text="Unique ID for CategoryTree")
     # it is unnecessary to define a primary key, if we use bigint as primary key
@@ -69,12 +68,27 @@ class CategoryTree(MPTTModel, CreateUpdateTracker):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = get_table_name("category_tree")
+        db_table = get_table_name("category_mptt")
 
     class MPTTMeta:
         order_insertion_by = ['category_id']
-        right_attr = 'rgt' # redefine right attribute to be compatible with sqlalchemy-mptt
+        right_attr = 'rgt'  # redefine right attribute to be compatible with sqlalchemy-mptt
         left_attr = 'lft'
 
     def __str__(self):
         return f'{self.category}'
+
+
+class CategoryTreeBeard(MP_Node, CreateUpdateTracker):
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,
+    #                       help_text="Unique ID for CategoryTree")
+    # it is unnecessary to define a primary key, if we use bigint as primary key
+    # id = models.AutoField(primary_key=True)
+
+    name = models.CharField(max_length=256, unique=True)
+
+    class Meta:
+        db_table = get_table_name("category_treebeard")
+
+    def __str__(self):
+        return f'{self.name}'

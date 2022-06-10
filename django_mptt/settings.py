@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # 'django_query_profiler',
     'mptt',
     'django_mptt_admin',
+    'treebeard',
     'category',
 ]
 
